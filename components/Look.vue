@@ -8,7 +8,7 @@
             </nuxt-link>
             <div class="p-5 text-center">
                 <h2><nuxt-link :to="look.slug" class="text-white link-fancy link-fancy-light">{{ look.name }}</nuxt-link></h2>
-                <span class="pb-4 text-secondary" v-html="look.description"> </span>
+                <span class="pb-4 text-secondary" v-html="$short_text(look.description, 200)"></span>
                 <nuxt-link :to="look.slug" class="link-fancy link-fancy-light">Взглянуть</nuxt-link>
             </div>
         </div>
@@ -17,5 +17,6 @@
 
 <script setup>
     const {look} = defineProps(['look'])
+    const {short} = useNuxtApp()
 </script>
 

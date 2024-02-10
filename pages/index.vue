@@ -10,7 +10,6 @@
             <Intro />
 
             <!-- Header -->    
-            <Header />
 
             <!-- Posts -->
             <div class="container px-vw-5 py-vh-3 rounded-5 shadow">
@@ -27,9 +26,8 @@
 </template>
 
 <script setup>
-    
-    const {data: looks} = await useFetch('https://aidarv.pythonanywhere.com/looks/')
-
-
+    const runtimeConfig = useRuntimeConfig();
+    const API_URI = runtimeConfig.public.API_URI
+    const {data: looks} = await useFetch(API_URI + 'looks/')
   
 </script>
