@@ -28,6 +28,7 @@
 <script setup>
     const runtimeConfig = useRuntimeConfig();
     const API_URI = runtimeConfig.public.API_URI
+    console.log(API_URI)
     const {data: looks} = await useFetch(API_URI + 'looks/')
   
 </script>
