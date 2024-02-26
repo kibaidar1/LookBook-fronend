@@ -1,12 +1,19 @@
 
 
 <template>
+<<<<<<< HEAD
     
     <div>
         <Navbar />  
         <slot />
         <Foot/>
     </div>
+=======
+ 
+        <Navbar />     
+        <slot />
+        <Foot/>
+>>>>>>> bb4ebeeaf3e4be1891e776cffa5d483f73d4fd00
 
 </template>
 
