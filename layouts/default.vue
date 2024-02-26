@@ -1,16 +1,12 @@
 
 
 <template>
- 
-
-        <div v-if="onMounted">
-            <Navbar />     
-            <slot />
-            <Foot/>
-        </div>
-        <div v-else>
-
-        </div>
+    
+    <div>
+        <Navbar />  
+        <slot />
+        <Foot/>
+    </div>
 
 </template>
 

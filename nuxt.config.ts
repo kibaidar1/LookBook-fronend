@@ -3,8 +3,9 @@ export default defineNuxtConfig({
   css: ['assets/css/theme.css',
         'assets/css/theme.min.css'],
 
-  modules: ['nuxt-aos'
+  modules: ['nuxt-aos',
   ],
+
 
   aos: {
     ssr: false,

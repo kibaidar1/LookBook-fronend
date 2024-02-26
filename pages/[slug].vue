@@ -26,9 +26,9 @@
                                         <span class="h6 fw-">Автор: {{ look.authors_name }}</span><br>
                                         <small class="text-secondary">{{ look.created_at }}</small>
                                     </div>
-                                    <div class="row-10 col-lg-5">
+                                    <!-- <div class="row-10 col-lg-5">
                                         <span class="h6 fw-">LIKES: {{ look.likes }}</span><br>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -64,5 +64,5 @@
     const API_URI = runtimeConfig.public.API_URI
     const { slug } = useRoute().params
     const url = API_URI + 'looks/' + slug
-    const {data: look} = await useFetch(url, {key: slug})
+    const {data: look} = await useFetch(url, {key: slug}, { initialCache: false })
 </script>

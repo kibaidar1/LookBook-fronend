@@ -26,9 +26,12 @@
 </template>
 
 <script setup>
+    definePageMeta({
+        layout: 'default'
+    })
     const runtimeConfig = useRuntimeConfig();
     const API_URI = runtimeConfig.public.API_URI
-    console.log(API_URI)
-    const {data: looks} = await useFetch(API_URI + 'looks/')
+    const url = API_URI + 'looks/'
+    const {data: looks} = await useFetch(url, {key: url})
   
 </script>
