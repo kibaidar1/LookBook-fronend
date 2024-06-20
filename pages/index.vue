@@ -9,9 +9,10 @@
                 <!-- Looks -->
                 <h2 class="visually-hidden">Looks cards</h2>
 
-                <div>
+                <div v-if="looks.length === 0 && !loading" class="no-data">Нет данных для отображения</div>
+
+                <div v-else>
                     <ul class="looks__cards">
-                        <div v-if="looks.length === 0 && !loading" class="no-data">Нет данных для отображения</div>
                         <li v-for="look in looks" :key="look.id">
                             <Look :look="look" />
                         </li>  
