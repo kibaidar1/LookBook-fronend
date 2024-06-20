@@ -1,16 +1,15 @@
 
 <template>
-    <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
-        <div class="bg-dark shadow rounded-5 p-0">
-            <nuxt-link :to="look.slug" >
-                <img :src="look.images[0].image" width="582" height="327" alt="abstract image"
-                class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
-            </nuxt-link>
-            <div class="p-5 text-center">
-                <h2><nuxt-link :to="look.slug" class="text-white link-fancy link-fancy-light">{{ look.name }}</nuxt-link></h2>
-                <span class="pb-4 text-secondary" v-html="$short_text(look.description, 200)"></span>
-                <nuxt-link :to="look.slug" class="link-fancy link-fancy-light">Взглянуть</nuxt-link>
-            </div>
+    <div class="card" data-aos="zoom-in-up">
+        <div v-if="look.images[0]">
+            <nuxt-link :to="look.slug"><img :src="look.images[0].image" :alt=look.name loading="lazy"></nuxt-link>
+        </div>
+        <div v-else>
+            <nuxt-link :to="look.slug"><img src="/assets/img/icon.svg" :alt=look.name loading="lazy"></nuxt-link>
+        </div>
+        <div class="card__info">
+            <nuxt-link :to="look.slug" class="link"><h3 class="card__title">{{ look.name }}</h3></nuxt-link>
+            <p class="card__description" v-html="$short_text(look.description, 200)"></p>
         </div>
     </div>
 </template>

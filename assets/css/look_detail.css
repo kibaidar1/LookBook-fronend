@@ -1,0 +1,71 @@
+/* Look */
+.look-images__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8vw;
+}
+
+.image__item img{
+    width: min(60vw, 800px);
+    height: auto;
+    border-radius: var(--card-border-radius);
+}
+
+.look-info {
+    display: flex;
+    flex-direction: column;
+    width: clamp(200px, 60vw, 1200px);
+    margin: 5vw auto;
+}
+
+.look-name {
+    font-size: var(--font-size-h1);
+    align-items: center;
+    text-align: center;
+    padding: 2vw 0;
+}
+
+.look-description {
+    text-align: justify;
+    padding: 5vw 0;
+}
+
+.look-author {
+    color: var(--color-light);
+    padding: 1vw 0;
+}
+
+.clothes-categories__list {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.clothes-categories__item {
+    border-top: 2px solid var(--color-light);
+    padding: 3vw;
+}
+
+.clothes-category__name {
+    font-size: var(--font-size-h2);
+    padding: 2vw;
+}
+
+.clothes__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100vw, 500px), 1fr));
+    grid-gap: 1rem;
+    align-items: center;
+    
+}
+
+.clothes__item {
+    display: block;
+    background-color: var(--color-dark-gray);
+    width: min(40vw, 600px);
+    padding: min(3vw,150px);
+    row-gap: min(4vw, 100px);
+}
+

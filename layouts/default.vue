@@ -3,71 +3,18 @@
 <template>
 
     <div>
-        <Navbar />  
+        <Header />  
         <slot />
         <Foot/>
     </div>
 
 </template>
 
-<script>
-    export default{
-        head: {
-      
-        script: [{src: "assets/js/bootstrap.bundle.min.js"},],
-        },
-    }
+<script setup>
+    useHead({
+        meta: [{charset: 'UTF-8'}],
+        meta: [{name: 'viewport', content: "width=device-width, initial-scale=1.0"}],
+        link: [{rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'}],
+    })
 
 </script>
-
-<style>
-      /* inter-300 - latin */
-      @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 300;
-      font-display: swap;
-      src: local(''),
-          url('assets/fonts/inter-v12-latin-300.woff2') format('woff2'),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url('assets/fonts/inter-v12-latin-300.woff') format('woff');
-      /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      /* inter-400 - latin */
-      @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: local(''),
-          url('assets/fonts/inter-v12-latin-regular.woff2') format('woff2'),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url('assets/fonts/inter-v12-latin-regular.woff') format('woff');
-      /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 500;
-      font-display: swap;
-      src: local(''),
-          url('assets/fonts/inter-v12-latin-500.woff2') format('woff2'),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url('assets/fonts/inter-v12-latin-500.woff') format('woff');
-      /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-
-      @font-face {
-      font-family: 'Inter';
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      src: local(''),
-          url('assets/fonts/inter-v12-latin-700.woff2') format('woff2'),
-          /* Chrome 26+, Opera 23+, Firefox 39+ */
-          url('assets/fonts/inter-v12-latin-700.woff') format('woff');
-      /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-      }
-  </style>

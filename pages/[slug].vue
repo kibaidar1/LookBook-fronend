@@ -1,62 +1,49 @@
 <template>
     <html>
-        <head>
-            <title>{{ look.name }}</title>
-        </head>
-
-
-        <body class="bg-black text-white mt-0 " >
-                <div class="container">
-                    <div class="row d-flex justify-content-center py-vh-5 pb-0 ">
-                        <div v-for="image in look.images" class="row align-items-end" data-aos="zoom-in-up">
-                            <div class="col-12 py-vh-2">
-                                <img :src="image.image" width="800" alt="изображение образа"
-                                class="img-fluid mx-auto d-block position-relative rounded-5 shadow">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-10 col-xl-8" data-aos="fade-left">
-                            <div class="column">
-                                <div class="row-12" >
-                                    <h1 class="display-1 fw-bold text-center">{{ look.name }}</h1>
-                                    <span class="pb-4 text-secondary" v-html="look.description"> </span>
-                                </div>
-                                <div class="bg-gray row d-flex align-items-start d-flex justify-content-start align-items-center pt-3">
-                                    <div class="col-10 col-lg-5">
-                                        <span class="h6 fw-">Автор: {{ look.authors_name }}</span><br>
-                                        <small class="text-secondary">{{ look.created_at }}</small>
-                                    </div>
-                                    <!-- <div class="row-10 col-lg-5">
-                                        <span class="h6 fw-">LIKES: {{ look.likes }}</span><br>
-                                    </div> -->
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                        
-                        <div v-for="cloth_category in look.clothes_category" class="col-12 col-lg-10 col-xl-8">
-                            <div class="row d-flex align-items-center" data-aos="fade-right">
-                                <div class="col-12 col-lg-7">
-                                    <h2 class="h3 mt-5 border-top pt-5">{{ cloth_category.name }}</h2>
-                                </div>
-                                <div v-for="cloth in cloth_category.clothes" class="row d-flex align-items-start justify-content-center py-vh-1" data-aos="fade">
-                                    <div class="col-12 col-lg-10 col-xl-9">
-                                        <div class="p-5 small bg-gray-900">
-                                            <h3 class="h6">{{ cloth.name }}</h3>
-                                            <div v-for="link in cloth.links">
-                                                <nuxt-link :to="link.link" class="text-secondary"> Перейти в магазин </nuxt-link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+        <body>
+            <main class="content container">
+                <div v-if="pending">
+                    Loading ...
                 </div>
-            <Comments :comments="look.comments" />
+                <div v-else>
+                    <h1 class="visually-hidden">{{look.name}} Detail</h1>
+                    
+                    <ul class="look-images__list">
+                        <h2 class="visually-hidden">{{look.name}} images</h2>
+                        <li class="image__item" v-for="image in look.images" data-aos="zoom-in-up">
+                            <img :src="image.image" alt="{{look.name}} image">
+                        </li>
+                    </ul>
+
+                    <section class="look-info" data-aos="fade-left">
+                        <h2 class=look-name>{{ look.name }}</h2>
+                        <p class="look-description" v-html="look.description"></p>
+                        <p class="look-author">Автор: {{ look.authors_name }}</p>
+                        <p class="look-publication_date">{{look.created_at}}</p>
+                    </section>
+
+                    <section class="look-clothes">
+                        <h2 class="visually-hidden">{{look.name}} clothes</h2>
+                        <ul class="clothes-categories__list">
+                            <li class="clothes-categories__item" v-for="clothes_category in look.clothes_category" data-aos="fade-right">
+                                <h3 class="clothes-category__name">{{ clothes_category.name }}</h3>
+                                <ul class="clothes__list">
+                                    <li class="clothes__item" v-for="clothes in clothes_category.clothes" data-aos="zoom-in-up">
+                                        <h4>{{ clothes.name }}</h4><br>
+                                        <ul class="links__list">
+                                            <li class="links__item" v-for="link in clothes.links">
+                                                <nuxt-link :to="link.link" class="link">Перейти в магазин</nuxt-link>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>  
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </main>
         </body>
     </html>
-
-
 </template>
 
 <script setup>
@@ -64,5 +51,11 @@
     const API_URI = runtimeConfig.public.API_URI
     const { slug } = useRoute().params
     const url = API_URI + 'looks/' + slug
-    const {data: look} = await useFetch(url, {key: slug}, { initialCache: false })
+    const {pending, data: look} = await useFetch(url, {key: slug, 
+        immediate: process.dev || process.env.prerender,
+        initialCache: false})
+
+    useHead({
+        title: look._rawValue.name,
+    })
 </script>
