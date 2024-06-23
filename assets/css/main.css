@@ -144,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Header */
 
 .header {
-    padding: min(6vw, 40px) 0;
+    padding: min(3vw, 20px) 0;
     position: fixed;
     top: 0;
     width: 100%;

@@ -32,11 +32,11 @@
                             class="pagination-boundary-button button" 
                             @click="goToPage(1)" 
                             :disabled="currentPage === 1">
-                            <<
+                            &lt;&lt;&lt;
                         </button>
 
                         <button 
-                            v-for="page in lastPage" :key="page" 
+                            v-for="page in generatePagination(currentPage, lastPage)" :key="page" 
                             @click="page !== '...' && goToPage(page)" 
                             :disabled="page === '...' || currentPage === page" 
                             class="pagination-page-button" 
@@ -48,7 +48,7 @@
                             class="pagination-boundary-button button" 
                             @click="goToPage(lastPage)" 
                             :disabled="currentPage === lastPage">
-                            >>
+                            >>>
                         </button>
                     </div>     
                 </div>
@@ -99,6 +99,22 @@
     }
 
     fetchData(`${looks_url}?page=1`)
+
+
+    function generatePagination(currentPage, lastPage) {
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(lastPage, startPage + 4);
+
+        // Adjust startPage if endPage is less than 5
+        startPage = Math.max(1, endPage - 4);
+
+        let pages = [];
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(i);
+        }
+
+        return pages;
+    }
   
 </script>
 
